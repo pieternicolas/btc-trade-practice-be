@@ -1,0 +1,65 @@
+{
+  "name": "btc-trade-practice-be",
+  "version": "1.0.0",
+  "description": "Bitcoin trading practice backend side",
+  "main": "src/server.js",
+  "scripts": {
+    "watch": "gulp watch",
+    "start": "npm run clean && concurrently --kill-others \"npm run test\" \"npm run watch\"",
+    "test": "gulp e2e",
+    "build": "npm run clean && NODE_ENV=production webpack",
+    "serve": "npm run build && node dist/server.min.js",
+    "clean": "rm -rf dist/ && rm .gulp-cache || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pieternicolas/btc-trade-practice-be.git"
+  },
+  "keywords": [
+    "bitcoin",
+    "btc",
+    "node",
+    "express",
+    "javascript",
+    "backend"
+  ],
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongodb": "^3.0.0-rc0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-root-import": "^5.1.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
+    "babili-webpack-plugin": "^0.1.2",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^3.0.0",
+    "concurrently": "^3.5.0",
+    "db-migrate": "^0.10.0-beta.24",
+    "db-migrate-mysql": "^1.1.10",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-file-cache": "0.0.1",
+    "gulp-mocha": "^4.3.1",
+    "gulp-nodemon": "^2.2.1",
+    "mocha": "^3.5.3",
+    "nodemon": "^1.12.1",
+    "pump": "^1.0.2",
+    "supertest": "^3.0.0",
+    "webpack": "^3.6.0"
+  },
+  "author": "Nicolas Pieter (nicolaspieter@yahoo.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pieternicolas/btc-trade-practice-be/issues"
+  },
+  "homepage": "https://github.com/pieternicolas/btc-trade-practice-be#readme"
+}
