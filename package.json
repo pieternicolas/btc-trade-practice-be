@@ -4,12 +4,13 @@
   "description": "Bitcoin trading practice backend side",
   "main": "src/server.js",
   "scripts": {
-    "watch": "gulp watch",
-    "start": "npm run clean && concurrently --kill-others \"npm run test\" \"npm run watch\"",
-    "dev": "npm run start",
+    "watch:build": "webpack --mode development --watch",
+    "watch:client": "nodemon ./dist/main.min.js localhost 8080",
+    "start": "npm run build && concurrently --kill-others \"npm run watch:build\" \"npm run watch:client\"",
+    "dev": "npm run build && concurrently --kill-others \"npm run watch:build\" \"npm run watch:client\" \"npm run test\"",
     "test": "gulp e2e",
-    "build": "npm run clean && NODE_ENV=production webpack",
-    "serve": "npm run build && node dist/server.min.js",
+    "build": "npm run clean && webpack --mode production",
+    "serve": "npm run build && node dist/main.min.js",
     "clean": "rm -rf dist/ && rm .gulp-cache || true"
   },
   "repository": {
@@ -42,9 +43,8 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-root-import": "^5.1.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
-    "babili-webpack-plugin": "^0.1.2",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-http": "^3.0.0",
@@ -60,7 +60,9 @@
     "nodemon": "^1.17.2",
     "pump": "^1.0.2",
     "supertest": "^3.0.0",
-    "webpack": "^3.11.0"
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "^4.3.0",
+    "webpack-cli": "^2.0.13"
   },
   "author": "Nicolas Pieter (nicolaspieter@yahoo.com)",
   "license": "MIT",

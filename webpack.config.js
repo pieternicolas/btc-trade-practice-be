@@ -1,8 +1,8 @@
 const path = require('path');
-const BabiliPlugin = require('babili-webpack-plugin');
+const webpack = require('webpack');
 
-const DIST_DIR   = path.join(__dirname, 'dist'),
-      DEV_DIR = path.join(__dirname, 'src');
+const DIST_DIR = path.join(__dirname, 'dist');
+const DEV_DIR = path.join(__dirname, 'src');
 
 module.exports = {
   context: DEV_DIR,
@@ -13,28 +13,20 @@ module.exports = {
 
   output: {
     path: DIST_DIR,
-    filename: "server.min.js"
+    filename: '[name].min.js'
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['env'],
-          plugins: ['transform-runtime','babel-plugin-root-import']
+        use: {
+          loader: 'babel-loader'
         }
       }
     ]
   },
-
-  plugins: [
-    new BabiliPlugin({
-      mangle: false
-    })
-  ],
 
   target: 'node',
 
