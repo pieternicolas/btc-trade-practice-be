@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import express from 'express';
 
-import { port, database } from './config/';
+import { port } from './config/';
 import routes from './routes/';
 import applyMiddleware from './middlewares/';
 
@@ -10,7 +10,6 @@ const app = express();
 
 applyMiddleware(app);
 routes(app);
-
 
 if (process.env.NODE_ENV != 'test')	{
 	app.listen(port, () => {
